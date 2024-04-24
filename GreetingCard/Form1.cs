@@ -52,7 +52,7 @@ namespace GreetingCard
                 Refresh();
             }
 
-            Constant();
+            Constant(); 
             MClosed();
         }
 
