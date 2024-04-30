@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.Media;
 
 namespace GreetingCard
 {
@@ -24,6 +25,8 @@ namespace GreetingCard
         SolidBrush purpleBrush = new SolidBrush(Color.MediumPurple);
         SolidBrush grayBrush = new SolidBrush(Color.Gray);
         SolidBrush blueBrush = new SolidBrush(Color.LightBlue);
+        SolidBrush yellowBrush = new SolidBrush(Color.Yellow);
+        Font drawFont = new Font("Arial", 32, FontStyle.Bold);
         Pen blackPen = new Pen(Color.Black, 3);
         public Form1()
         {
@@ -34,10 +37,14 @@ namespace GreetingCard
         {
             Constant();
             MClosed();
+            RedFlowers();
         }
 
         private void Form1_Click(object sender, EventArgs e)
         {
+            SoundPlayer hbplayer = new SoundPlayer(Properties.Resources.hbSound);
+            hbplayer.Play();
+
             int i = 1;
             while (i <=10)
             {
@@ -45,12 +52,14 @@ namespace GreetingCard
 
                 Constant();
                 MClosed();
+                YellowFlowers();
 
                 Thread.Sleep(220);
                 Refresh();
 
                 Constant();
                 MOpen();
+                RedFlowers();
 
                 Thread.Sleep(220);
                 Refresh();
@@ -58,6 +67,11 @@ namespace GreetingCard
 
             Constant(); 
             MClosed();
+            RedFlowers();
+            Text();
+
+            SoundPlayer yayplayer = new SoundPlayer(Properties.Resources.yaySound);
+            yayplayer.Play();
         }
 
         public void MOpen()
@@ -93,6 +107,37 @@ namespace GreetingCard
             g.DrawLine(blackPen, 160, 132, 265, 132);
         }
 
+        public void RedFlowers()
+        {
+            Graphics g = this.CreateGraphics();
+
+            g.FillEllipse(redBrush, 450, 450, 15, 15);
+            g.FillEllipse(redBrush, 250, 490, 12, 12);
+            g.FillEllipse(redBrush, 160, 520, 14, 14);
+            g.FillEllipse(redBrush, 480, 520, 11, 11);
+            g.FillEllipse(redBrush, 360, 545, 12, 12);
+            g.FillEllipse(redBrush, 75, 500, 15, 15);
+        }
+
+        public void YellowFlowers()
+        {
+            Graphics g = this.CreateGraphics();
+
+            g.FillEllipse(yellowBrush, 450, 450, 15, 15);
+            g.FillEllipse(yellowBrush, 250, 490, 12, 12);
+            g.FillEllipse(yellowBrush, 160, 520, 14, 14);
+            g.FillEllipse(yellowBrush, 480, 520, 11, 11);
+            g.FillEllipse(yellowBrush, 360, 545, 12, 12);
+            g.FillEllipse(yellowBrush, 75, 500, 15, 15);
+        }
+
+        public void Text()
+        {
+            Graphics g = this.CreateGraphics();
+
+            g.DrawString("Happy \nBirthday \nGang", drawFont, blackBrush, 20, 150);
+        }
+
         public void Constant()
         {
             Graphics g = this.CreateGraphics();
@@ -113,13 +158,6 @@ namespace GreetingCard
             g.FillEllipse(whiteBrush, 70, 280, 50, 50);
             g.FillEllipse(whiteBrush, 80, 230, 70, 70);
             g.FillEllipse(whiteBrush, 80, 250, 130, 70);
-
-            g.FillEllipse(redBrush, 450, 450, 15, 15); //Flowers
-            g.FillEllipse(redBrush, 250, 490, 12, 12);
-            g.FillEllipse(redBrush, 160, 520, 14, 14);
-            g.FillEllipse(redBrush, 480, 520, 11, 11);
-            g.FillEllipse(redBrush, 360, 545, 12, 12);
-            g.FillEllipse(redBrush, 75, 500, 15, 15);
 
             g.FillEllipse(purpleBrush, 225, 450, 60, 30); //Dinosaur
             g.FillEllipse(purpleBrush, 310, 470, 60, 30);
